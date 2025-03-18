@@ -33,26 +33,29 @@ def exp_sum(num):
     c = 1
     flag = True
     while flag:
-        last_num = diagram[-1]  # 4
+        last_num = diagram[0]  # 4
         if last_num != 1:
-            diagram.pop(-1)
+            diagram.pop(0)
+            diagram.append(last_num - 1)
             diagram.append(1)
-            diagram.append(last_num-1)
             c += 1
             print(diagram)
-            for index in range(len(diagram)-1, 0-1, -1):
+            for index in range(0, len(diagram)):
                 if diagram[index] > 1:
-                    # [1, 3]
-                    last_num = diagram[-1]  # 3
-                    diagram[-2] += 1
-                    last_num -= 1
-
-
+                    diagram[index] -= 1
+                    try:
+                        diagram[index+1] += 1
+                    except:
+                        diagram.append(1)
+                    print(diagram)
+                    c += 1
+                    diagram = sorted(diagram, reverse=True)
+                    print(diagram, "сортировка")
 
         else:
             flag = False
 
     return c
 
-print(exp_sum(4))
+print(exp_sum(10))
 
