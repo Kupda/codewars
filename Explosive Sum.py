@@ -1,38 +1,32 @@
 def exp_sum(num):
-    diagram = [num]  # [4]
-    c = 1
-    print([10], c)
+    turns = [num]
     flag = True
+    c = []
+    index = 0
     while flag:
-        last_num = diagram[0]  # 4
-        if last_num != 1:
-            diagram.pop(0)
-            diagram.insert(0, last_num - 1)
-            diagram.append(1)
-            c += 1
-            print(diagram, c)
-            flag1 = True
-            index = -1
-            while flag1:
+        try:
+            if turns[index] > 1:
+                turns[index] -= 1
                 try:
-                    if diagram[index] > 1:
-                        diagram[index] -= 1
-                        try:
-                            diagram[index+1] += 1
-                        except:
-                            diagram.append(1)
-                        c += 1
-                        print(diagram, c)
+                    turns[index+1] += 1
+                    index += 1
                 except:
-                    pass
-                index += 1
-                if len(diagram) > index:
+                    turns.append(1)
                     index = 0
-        else:
-            flag = False
+                if sorted(turns, reverse=True) not in c:
+                    c.append(sorted(turns, reverse=True))
+                    print(sorted(turns, reverse=True))
+            else:
+                check = 0
+                for i in turns:
+                    if i != 1:
+                        check += 1
+                if check == 0:
+                    flag = False
+        except:
+            index = 0
+    return len(c)+1
 
-    return c
 
-print(exp_sum(5))
+print(exp_sum(10))
 
-# переделать крч надо все =(
