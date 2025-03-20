@@ -9,16 +9,17 @@ def exp_sum(num):
             fitst_combs.append([n, num-n])
     for comb in fitst_combs:
         c.append(comb)
+
     for comb in fitst_combs:
         comb1 = sorted(comb, reverse=True)
+        for i in range(0, len(comb1)):
+            if comb1[i] != 1:
+                comb1[i] -= 1
+                comb1.append(1)
+                c.append(comb1)
 
-    for i in range(0, len(comb1)):
-        if comb1[i] != 1:
-            comb1[i] -= 1
-            comb1.append(1)
-            c.append(comb1)
 
     return c
 
-print(exp_sum(5))
+print(exp_sum(6))
 
