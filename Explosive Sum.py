@@ -17,6 +17,7 @@ def exp_sum(num):
                 comb1[i] -= 1
                 comb1.append(1)
                 c.append(comb1)
+                print()
 
 
     return c
