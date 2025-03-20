@@ -1,32 +1,24 @@
 def exp_sum(num):
-    turns = [num]
-    flag = True
-    c = []
-    index = 0
-    while flag:
-        try:
-            if turns[index] > 1:
-                turns[index] -= 1
-                try:
-                    turns[index+1] += 1
-                    index += 1
-                except:
-                    turns.append(1)
-                    index = 0
-                if sorted(turns, reverse=True) not in c:
-                    c.append(sorted(turns, reverse=True))
-                    print(sorted(turns, reverse=True))
-            else:
-                check = 0
-                for i in turns:
-                    if i != 1:
-                        check += 1
-                if check == 0:
-                    flag = False
-        except:
-            index = 0
-    return len(c)+1
+    c = [[num]]
+    fitst_combs = []
+    if num % 2 == 0:
+        for n in range(num-1, int(num/2)-1, -1):
+            fitst_combs.append([n, num-n])
+    else:
+        for n in range(num-1, int(num//2), -1):
+            fitst_combs.append([n, num-n])
+    for comb in fitst_combs:
+        c.append(comb)
+    for comb in fitst_combs:
+        comb1 = sorted(comb, reverse=True)
 
+    for i in range(0, len(comb1)):
+        if comb1[i] != 1:
+            comb1[i] -= 1
+            comb1.append(1)
+            c.append(comb1)
 
-print(exp_sum(10))
+    return c
+
+print(exp_sum(5))
 
